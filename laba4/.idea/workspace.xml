@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ac0176b-bb08-49ba-881b-e86f66a1c43c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../laba2_var7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../laba2_var7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Основы Java. Лабораторная 1. Новая 0309.doc" beforeDir="false" afterPath="$PROJECT_DIR$/../laba1.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Основы Java. Лабораторная 2. Новая 1109.doc" beforeDir="false" afterPath="$PROJECT_DIR$/../laba2.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Основы Java. Лабораторная 3. Новая 2809.doc" beforeDir="false" afterPath="$PROJECT_DIR$/../laba3.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Основы Java. Лабораторная 4. Новая 1510.doc" beforeDir="false" afterPath="$PROJECT_DIR$/../laba4.doc" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="3LBtwXgXZtv9wR9TXAJaCPiBaSu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "C:/main/MIET/sem3/Java/laba4/src/Main.java"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ac0176b-bb08-49ba-881b-e86f66a1c43c" name="Changes" comment="" />
+      <created>1792939530483</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1792939530483</updated>
+    </task>
+    <servers />
+  </component>
+</project>
