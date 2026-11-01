@@ -1,3 +1,5 @@
+import model.CargoClass;
+
 public abstract class Vehicle {
     
     protected int dimensions; // Габарит

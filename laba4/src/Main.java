@@ -1,13 +1,44 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import interfaces.car_transport;
+import model.CargoClass;
+import model.Vehicle;
+import model.freight.CarWithTrailer;
+import model.freight.Trailer;
+import model.freight.Truck;
+import model.passenger.Bus;
+import model.passenger.Car;
+import servise.Checkpoint;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+public class Main {
+    public static void main(String[] args) {
+        Checkpoint checkpoint = new Checkpoint();
+
+        Vehicle[] vehicles = {
+                new Car(470, 1800, 55, CargoClass.SAFE),
+                new Car(520, 3000, 55, CargoClass.SAFE),
+                new Truck(1100, 11000, 35, CargoClass.FLAMMABLE),
+                new Bus(1300, 19000, 40, CargoClass.SAFE),
+                new Trailer(1500, 23000, 25, CargoClass.EXPLOSIVE),
+                new CarWithTrailer(950, 6000, 45, CargoClass.CHEMICALLY_DANGEROUS),
+                new Truck(1000, 9000, 30, CargoClass.SPECIAL_IMPORTANCE)
+        };
+
+        for (Vehicle vehicle : vehicles) {
+            System.out.println(vehicle);
+
+            if (vehicle instanceof car_transport) {
+                car_transport passengerVehicle = (car_transport) vehicle;
+                System.out.println("Passenger capacity: " + passengerVehicle.getPassengerCapacity());
+                System.out.println("Can carry 4 passengers: "
+                        + passengerVehicle.canCarryPassengers(4));
+            }
+
+            if (checkpoint.Pass(vehicle)) {
+                System.out.println("Result: passage allowed.");
+            } else {
+                System.out.println("Result: passage denied. " + checkpoint.getReason());
+            }
+
+            System.out.println();
+        }
     }
 }

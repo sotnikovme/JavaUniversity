@@ -1,4 +1,11 @@
 import interfaces.car_transport;
+import model.CargoClass;
+import model.Vehicle;
+import model.freight.CarWithTrailer;
+import model.freight.Trailer;
+import model.freight.Truck;
+import model.passenger.Bus;
+import model.passenger.Car;
 
 public class Main {
     public static void main(String[] args) {

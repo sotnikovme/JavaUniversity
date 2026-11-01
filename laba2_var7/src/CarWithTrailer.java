@@ -1,4 +1,5 @@
 import interfaces.freightTransport;
+import model.CargoClass;
 
 public class CarWithTrailer extends Vehicle implements freightTransport {
     public CarWithTrailer(int dimensions, int weight, int speed, CargoClass cargoClass) {

@@ -1,4 +1,5 @@
 import interfaces.car_transport;
+import model.CargoClass;
 
 public class Car extends Vehicle implements car_transport {
     private final int passengerCapacity = 5;
