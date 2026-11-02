@@ -1,0 +1,4 @@
+1	root	root	ROOT
+2	operator	secret	USER
+3	Mikhail	qwerty	ROOT
+4	user	user	USER

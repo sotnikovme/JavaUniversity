@@ -1,20 +1,20 @@
 package model;
 
-import java.util.Scanner;
+import core.Group;
 
 public class User {
+    private final long id;
+    private final String login, password;
+    private final Group group;
 
-    String login;
-    String password;
-
-    public void User(){
-        Scanner scanner = new Scanner(System.in);
-        this.login = scanner.nextLine();
-        this.password = scanner.nextLine();
+    public User(long id, String login, String password, Group group) {
+        if (id < 1 || login == null || login.isEmpty() || password == null || password.isEmpty() || group == null)
+            throw new IllegalArgumentException("Некорректные данные пользователя");
+        this.id = id; this.login = login; this.password = password; this.group = group;
     }
-
-    public String toString(){
-        return this.login + "@" + this.password;
-    }
-
+    public long getId() { return id; }
+    public String getLogin() { return login; }
+    public String getPassword() { return password; }
+    public Group getGroup() { return group; }
+    @Override public String toString() { return id + ": " + login + " (" + group + ")"; }
 }

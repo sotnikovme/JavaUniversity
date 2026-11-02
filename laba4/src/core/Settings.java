@@ -1,29 +1,38 @@
 package core;
 
-import core.DB;
-
-import java.io.FileInputStream;
-import java.util.Scanner;
-
+import java.io.*;
+import java.nio.file.*;
+import java.util.Properties;
 
 public class Settings {
-    String DbName = "data/vehicles.txt";
-    String LogFile = "logs/app.log";
-    DB db = new DB();
-    String login;
-    String password;
-    Group group;
-    boolean debug = true;
-    boolean autotests = true;
-    // db.file=data/vehicles.txt
-    // log.file=logs/app.log
+    public final String login, password;
+    public final Group group;
+    public final boolean debug, autotests;
 
-
-    public Settings() {
-        Scanner scanner = new Scanner(System.in);
-        this.login = scanner.nextLine();
-        this.password = scanner.nextLine();
+    private Settings(Properties p) {
+        login = required(p, "login");
+        password = required(p, "password");
+        group = Group.valueOf(required(p, "group").toUpperCase());
+        debug = flag(p, "debug");
+        autotests = flag(p, "autotests");
     }
-    
-}
 
+    public static Settings load(Path file) throws IOException {
+        Properties p = new Properties();
+        try (InputStream in = Files.newInputStream(file)) { p.load(in); }
+        try { return new Settings(p); }
+        catch (IllegalArgumentException e) { throw new IOException("Ошибка настроек: " + e.getMessage(), e); }
+    }
+
+    private static String required(Properties p, String key) {
+        String value = p.getProperty(key);
+        if (value == null || value.trim().isEmpty()) throw new IllegalArgumentException("не задано " + key);
+        return value.trim();
+    }
+
+    private static boolean flag(Properties p, String key) {
+        String value = required(p, key);
+        if (!value.equals("true") && !value.equals("false")) throw new IllegalArgumentException(key + " должно быть true или false");
+        return Boolean.parseBoolean(value);
+    }
+}
