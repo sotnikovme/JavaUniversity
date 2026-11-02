@@ -1,14 +1,14 @@
 import core.AppLog;
 import core.Group;
 import core.Settings;
-import model.CargoClass;
-import model.User;
-import model.Vehicle;
-import service.Checkpoint;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import model.CargoClass;
+import model.User;
+import model.Vehicle;
+import service.Checkpoint;
 
 public class Main {
     private final Scanner input = new Scanner(System.in);
@@ -138,10 +138,10 @@ public class Main {
                         log.debug("State: vehicles=" + crud.vehicles().size()
                                 + ", users=" + crud.users().size());
                         break;
-                    case "11":
-                        checkRoot();
-                        autotests();
-                        break;
+                    // case "11":
+                    //     checkRoot();
+                    //     autotests();
+                    //     break;
                     default: System.out.println("Invalid menu choice.");
                 }
             } catch (Exception e) {
