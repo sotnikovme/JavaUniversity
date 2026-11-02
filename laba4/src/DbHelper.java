@@ -38,16 +38,16 @@ public class DbHelper {
                 if (line.trim().isEmpty()) continue;
                 try {
                     String[] fields = line.split("\t", -1);
-                    if (fields.length != 4) throw new IllegalArgumentException("ожидалось 4 поля");
+                    if (fields.length != 4) throw new IllegalArgumentException("expected 4 fields");
                     long id = Long.parseLong(fields[0]);
                     User user = new User(id, fields[1], fields[2], Group.valueOf(fields[3]));
                     for (User old : newUsers) {
-                        if (old.getId() == id) throw new IllegalArgumentException("повтор ID");
-                        if (old.getLogin().equals(user.getLogin())) throw new IllegalArgumentException("повтор логина");
+                        if (old.getId() == id) throw new IllegalArgumentException("duplicate ID");
+                        if (old.getLogin().equals(user.getLogin())) throw new IllegalArgumentException("duplicate login");
                     }
                     newUsers.add(user);
                 } catch (IllegalArgumentException e) {
-                    throw new IOException(userFile + ", строка " + (i + 1) + ": " + e.getMessage(), e);
+                    throw new IOException(userFile + ", line " + (i + 1) + ": " + e.getMessage(), e);
                 }
             }
         }
@@ -59,11 +59,11 @@ public class DbHelper {
                 if (line.trim().isEmpty()) continue;
                 try {
                     String[] fields = line.split("\t", -1);
-                    if (fields.length != 6) throw new IllegalArgumentException("ожидалось 6 полей");
+                    if (fields.length != 6) throw new IllegalArgumentException("expected 6 fields");
                     long id = Long.parseLong(fields[0]);
-                    if (id < 1) throw new IllegalArgumentException("неверный ID");
+                    if (id < 1) throw new IllegalArgumentException("invalid ID");
                     for (Vehicle old : newVehicles) {
-                        if (old.getId() == id) throw new IllegalArgumentException("повтор ID");
+                        if (old.getId() == id) throw new IllegalArgumentException("duplicate ID");
                     }
                     Vehicle vehicle = CRUD.createVehicle(fields[1], Integer.parseInt(fields[2]),
                             Integer.parseInt(fields[3]), Integer.parseInt(fields[4]),
@@ -71,7 +71,7 @@ public class DbHelper {
                     vehicle.setId(id);
                     newVehicles.add(vehicle);
                 } catch (IllegalArgumentException e) {
-                    throw new IOException(vehicleFile + ", строка " + (i + 1) + ": " + e.getMessage(), e);
+                    throw new IOException(vehicleFile + ", line " + (i + 1) + ": " + e.getMessage(), e);
                 }
             }
         }
@@ -102,17 +102,17 @@ public class DbHelper {
 
     public String loadCurrentUser() throws IOException {
         Path file = dir.resolve("current_user.txt");
-        if (!Files.exists(file)) return "нет";
+        if (!Files.exists(file)) return "none";
         List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-        if (lines.size() != 1) throw new IOException("В current_user.txt должна быть одна запись");
+        if (lines.size() != 1) throw new IOException("current_user.txt must contain one record");
         String[] fields = lines.get(0).split("\t", -1);
-        if (fields.length != 2) throw new IOException("Некорректный current_user.txt");
+        if (fields.length != 2) throw new IOException("Invalid current_user.txt");
         try {
             User user = crud.getUser(Long.parseLong(fields[0]));
             if (user != null && user.getLogin().equals(fields[1])) return user.getLogin();
-            return "не найден среди пользователей";
+            return "not found among users";
         } catch (NumberFormatException e) {
-            throw new IOException("Некорректный ID в current_user.txt", e);
+            throw new IOException("Invalid ID in current_user.txt", e);
         }
     }
 
@@ -122,6 +122,6 @@ public class DbHelper {
         if (vehicle instanceof Truck) return "TRUCK";
         if (vehicle instanceof Trailer) return "TRAILER";
         if (vehicle instanceof CarWithTrailer) return "CAR_WITH_TRAILER";
-        throw new IllegalArgumentException("Неизвестный тип машины");
+        throw new IllegalArgumentException("Unknown vehicle type");
     }
 }

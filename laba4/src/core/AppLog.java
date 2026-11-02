@@ -34,7 +34,7 @@ public class AppLog {
             lines.add(line);
             Files.write(file, lines, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
-            System.err.println("Не удалось записать лог: " + e.getMessage());
+            System.err.println("Failed to write log: " + e.getMessage());
         }
     }
 }

@@ -43,7 +43,7 @@ public class CRUD {
     public User addUser(String login, String password, Group group) {
         check(login);
         check(password);
-        if (findUser(login) != null) throw new IllegalArgumentException("Логин уже существует");
+        if (findUser(login) != null) throw new IllegalArgumentException("Login already exists");
         User user = new User(nextUser, login, password, group);
         nextUser++;
         users.add(user);
@@ -51,11 +51,11 @@ public class CRUD {
     }
 
     public void changeUser(long id, String login, String password, Group group) {
-        if (getUser(id) == null) throw new IllegalArgumentException("Пользователь не найден");
+        if (getUser(id) == null) throw new IllegalArgumentException("User not found");
         check(login);
         check(password);
         User other = findUser(login);
-        if (other != null && other.getId() != id) throw new IllegalArgumentException("Логин уже существует");
+        if (other != null && other.getId() != id) throw new IllegalArgumentException("Login already exists");
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId() == id) {
                 users.set(i, new User(id, login, password, group));
@@ -66,7 +66,7 @@ public class CRUD {
 
     public void deleteUser(long id) {
         User user = getUser(id);
-        if (user == null) throw new IllegalArgumentException("Пользователь не найден");
+        if (user == null) throw new IllegalArgumentException("User not found");
         users.remove(user);
     }
 
@@ -85,18 +85,18 @@ public class CRUD {
                 return;
             }
         }
-        throw new IllegalArgumentException("Машина не найдена");
+        throw new IllegalArgumentException("Vehicle not found");
     }
 
     public void deleteVehicle(long id) {
         Vehicle vehicle = getVehicle(id);
-        if (vehicle == null) throw new IllegalArgumentException("Машина не найдена");
+        if (vehicle == null) throw new IllegalArgumentException("Vehicle not found");
         vehicles.remove(vehicle);
     }
 
     public static Vehicle createVehicle(String type, int dimensions, int weight, int speed, CargoClass cargo) {
         if (dimensions <= 0 || weight <= 0 || speed < 0) {
-            throw new IllegalArgumentException("Габарит и масса должны быть положительными, скорость неотрицательной");
+            throw new IllegalArgumentException("Dimensions and weight must be positive; speed cannot be negative");
         }
         switch (type.toUpperCase()) {
             case "CAR": return new Car(dimensions, weight, speed, cargo);
@@ -104,7 +104,7 @@ public class CRUD {
             case "TRUCK": return new Truck(dimensions, weight, speed, cargo);
             case "TRAILER": return new Trailer(dimensions, weight, speed, cargo);
             case "CAR_WITH_TRAILER": return new CarWithTrailer(dimensions, weight, speed, cargo);
-            default: throw new IllegalArgumentException("Неизвестный тип: " + type);
+            default: throw new IllegalArgumentException("Unknown type: " + type);
         }
     }
 
@@ -126,7 +126,7 @@ public class CRUD {
     private static void check(String value) {
         if (value == null || value.trim().isEmpty() || value.contains("\t")
                 || value.contains("\n") || value.contains("\r")) {
-            throw new IllegalArgumentException("Поле пустое или содержит табуляцию/перенос строки");
+            throw new IllegalArgumentException("Field is empty or contains a tab or line break");
         }
     }
 }

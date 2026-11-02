@@ -1,1 +1,1 @@
-4	user
+1	root

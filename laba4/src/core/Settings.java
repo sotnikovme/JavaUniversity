@@ -29,19 +29,19 @@ public class Settings {
         try {
             return new Settings(p);
         } catch (IllegalArgumentException e) {
-            throw new IOException("Ошибка настроек: " + e.getMessage(), e);
+            throw new IOException("Settings error: " + e.getMessage(), e);
         }
     }
 
     private static String required(Properties p, String key) {
         String value = p.getProperty(key);
-        if (value == null || value.trim().isEmpty()) throw new IllegalArgumentException("не задано " + key);
+        if (value == null || value.trim().isEmpty()) throw new IllegalArgumentException("missing " + key);
         return value.trim();
     }
 
     private static boolean flag(Properties p, String key) {
         String value = required(p, key);
-        if (!value.equals("true") && !value.equals("false")) throw new IllegalArgumentException(key + " должно быть true или false");
+        if (!value.equals("true") && !value.equals("false")) throw new IllegalArgumentException(key + " must be true or false");
         return Boolean.parseBoolean(value);
     }
 }

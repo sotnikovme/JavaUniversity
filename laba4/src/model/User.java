@@ -9,7 +9,7 @@ public class User {
 
     public User(long id, String login, String password, Group group) {
         if (id < 1 || login == null || login.isEmpty() || password == null || password.isEmpty() || group == null)
-            throw new IllegalArgumentException("Некорректные данные пользователя");
+            throw new IllegalArgumentException("Invalid user data");
         this.id = id;
         this.login = login;
         this.password = password;
