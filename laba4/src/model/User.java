@@ -10,11 +10,29 @@ public class User {
     public User(long id, String login, String password, Group group) {
         if (id < 1 || login == null || login.isEmpty() || password == null || password.isEmpty() || group == null)
             throw new IllegalArgumentException("Некорректные данные пользователя");
-        this.id = id; this.login = login; this.password = password; this.group = group;
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.group = group;
     }
-    public long getId() { return id; }
-    public String getLogin() { return login; }
-    public String getPassword() { return password; }
-    public Group getGroup() { return group; }
-    @Override public String toString() { return id + ": " + login + " (" + group + ")"; }
+    public long getId() {
+        return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    @Override
+    public String toString() {
+        return id + ": " + login + " (" + group + ")";
+    }
 }

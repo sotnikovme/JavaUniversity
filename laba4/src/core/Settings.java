@@ -1,13 +1,17 @@
 package core;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Properties;
 
 public class Settings {
-    public final String login, password;
+    public final String login;
+    public final String password;
     public final Group group;
-    public final boolean debug, autotests;
+    public final boolean debug;
+    public final boolean autotests;
 
     private Settings(Properties p) {
         login = required(p, "login");
@@ -19,9 +23,14 @@ public class Settings {
 
     public static Settings load(Path file) throws IOException {
         Properties p = new Properties();
-        try (InputStream in = Files.newInputStream(file)) { p.load(in); }
-        try { return new Settings(p); }
-        catch (IllegalArgumentException e) { throw new IOException("Ошибка настроек: " + e.getMessage(), e); }
+        try (InputStream in = Files.newInputStream(file)) {
+            p.load(in);
+        }
+        try {
+            return new Settings(p);
+        } catch (IllegalArgumentException e) {
+            throw new IOException("Ошибка настроек: " + e.getMessage(), e);
+        }
     }
 
     private static String required(Properties p, String key) {

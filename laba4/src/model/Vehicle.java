@@ -4,7 +4,7 @@ package model;
 import model.CargoClass;
 
 public abstract class Vehicle {
-    
+    private long id;
     protected int dimensions; // Габарит
     protected int weight;
     protected int speed;
@@ -19,6 +19,14 @@ public abstract class Vehicle {
 
     public int getDimensions() {
         return dimensions;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getWeight() {
